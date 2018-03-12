@@ -15,11 +15,11 @@ export default {
     ProductsListSubmit
   },
   created() {
-    this.$store.dispatch('getItems')
+    this.$store.dispatch('fetchItems')
   },
   computed: {
     items () {
-      return this.$store.state.list;
+      return this.$store.getters.getItems
     }
   }
 }

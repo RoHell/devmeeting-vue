@@ -18,7 +18,6 @@ export default new Vuex.Store({
     },
     removeItem(state, payload) {
       let itemToRemoveIndex = state.list.findIndex(item => {
-        console.log('payload', payload)
         return item.id === payload.item
       })
       state.list.splice(itemToRemoveIndex, 1)
@@ -37,12 +36,17 @@ export default new Vuex.Store({
         item: payload
       })
     },
-    async getItems({ commit }) {
-      const payload = await axios.get('products.json').then(res => res.data);
+    async fetchItems({ commit }) {
+      const payload = await axios.get('products.json').then(res => res.data)
       commit({
         type: 'setItems',
         items: payload
       });
+    }
+  },
+  getters: {
+    getItems(state) {
+      return state.list
     }
   },
   plugins: [createLogger()]
