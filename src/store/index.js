@@ -7,20 +7,28 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    list: []
+    items: []
   },
   mutations: {
     addItem(state, payload) {
-      state.list.push(payload.item);
+      state.items.push(payload.item);
     },
     setItems(state, payload) {
-      state.list = payload.items;
+      state.items = payload.items;
     },
     removeItem(state, payload) {
-      let itemToRemoveIndex = state.list.findIndex(item => {
+      let itemToRemoveIndex = state.items.findIndex(item => {
         return item.id === payload.item
       })
-      state.list.splice(itemToRemoveIndex, 1)
+      state.items.splice(itemToRemoveIndex, 1)
+    },
+    sortItems(state, payload) {
+      state.items.sort((prev, next) => {
+        return payload.order ? prev.name > next.name : prev.name < next.name
+      })
+    },
+    removeAllItems(state) {
+      state.items = []
     }
   },
   actions: {
@@ -42,11 +50,22 @@ export default new Vuex.Store({
         type: 'setItems',
         items: payload
       });
+    },
+    sortItems (store, payload) {
+      store.commit({
+        type: 'sortItems',
+        order: payload
+      })
+    },
+    removeAllItems (store) {
+      store.commit({
+        type: 'removeAllItems'
+      })
     }
   },
   getters: {
     getItems(state) {
-      return state.list
+      return state.items
     }
   },
   plugins: [createLogger()]

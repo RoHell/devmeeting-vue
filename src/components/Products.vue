@@ -1,27 +1,34 @@
 <template lang="pug">
   .products
     h1 Lista
+    products-actions
     products-list(:items='items')
-    products-list-submit
+    products-list-add
 </template>
 
 <script>
+import ProductsActions from './ProductsActions.vue'
 import ProductsList from './ProductsList.vue'
-import ProductsListSubmit from './ProductsListSubmit.vue'
+import ProductsListAdd from './ProductsListAdd.vue'
 
 export default {
-  components: {
-    ProductsList,
-    ProductsListSubmit
+  data () {
+    return {}
   },
-  created() {
+  components: {
+    ProductsActions,
+    ProductsList,
+    ProductsListAdd
+  },
+  created () {
     this.$store.dispatch('fetchItems')
   },
   computed: {
     items () {
       return this.$store.getters.getItems
     }
-  }
+  },
+  methods: {}
 }
 </script>
 

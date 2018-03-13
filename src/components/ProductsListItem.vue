@@ -25,6 +25,7 @@ export default {
     display: flex
     justify-content: space-between
     align-items: center
+    padding: 10px 0 0
     .list-item__name
       padding-right: 10px
       overflow-x: hidden

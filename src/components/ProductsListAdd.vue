@@ -1,12 +1,12 @@
 <template lang="pug">
   form(@submit.prevent='onSubmit')
-    .products-list-submit
+    .products-list-add
       input(
         v-model='input.name',
         name='item',
         v-validate="'required|min:3'")
       button Dodaj
-    .products-list-submit__validation(v-show="errors.has('item')") {{ errors.first('item') }}
+    .products-list-add__validation(v-show="errors.has('item')") {{ errors.first('item') }}
 </template>
 
 <script>
@@ -38,14 +38,14 @@ export default {
 
 <style lang="sass" scoped>
   form
-    .products-list-submit
+    .products-list-add
       display: flex
       justify-content: space-between
       margin-top: 20px
       input
         margin-right: 20px
         width: 100%
-    .products-list-submit__validation
+    .products-list-add__validation
       text-align: left
       padding-top: 5px
       color: red

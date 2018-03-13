@@ -22,4 +22,7 @@ export default {
 
 <style lang="sass" scoped>
   .products-list
+      .products-list__no-item
+        padding: 10px 0
+        color: #999
 </style>
